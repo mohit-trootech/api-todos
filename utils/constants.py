@@ -86,24 +86,8 @@ class Templates(Enum):
 # Urls Path & Reverse
 # =====================================================
 class Urls(Enum):
-    HOME = "/chat/"
-    ABOUT = "/chat/about/"
-    LOGIN = "/accounts/login"
-    REGISTER = "accounts/signup"
-    LOGOUT = "accounts/logout"
-    PROFILE = "accounts/profile"
-    HOME_REVERSE = "home"
-    ABOUT_REVERSE = "about"
-    LOGIN_REVERSE = "login"
-    REGISTER_REVERSE = "signup"
-    LOGOUT_REVERSE = "logout"
-    FORCE_LOGOUT_REVERSE = "force-logout"
-    PROFILE_REVERSE = "profile"
-    USER_PROFILE_REVERSE = "user-profile"
-    INDEX_REVERSE = "index"
-    CHAT_DATA = "chat-data"
-    PROFILE_UPDATE_SUCCESS_URL = "/accounts/profile/{pk}"
-    NEWLETTER_REVERSE = "newsletter"
+    SCHEMA_REVERSE = "schema"
+    TODOS_REVERSE = "todos"
 
 
 # Context Variable Names

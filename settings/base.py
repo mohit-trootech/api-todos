@@ -18,9 +18,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "todos",
+    "rest_framework",
     "django_extensions",
     "dj_database_url",
-    "login_required",
     "debug_toolbar",
     "schema_graph",
 ]
@@ -36,7 +37,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "login_required.middleware.LoginRequiredMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
@@ -56,17 +56,6 @@ TEMPLATES = [
             ],
         },
     },
-]
-
-
-# Ignore Paths for Login Required
-# =====================================================
-# https://pypi.org/project/django-login-required-middleware/
-LOGIN_REQUIRED_IGNORE_PATHS = [
-    "/accounts/login/$",
-    "/accounts/signup/$",
-    "/admin/$",
-    "/about/$",
 ]
 
 
