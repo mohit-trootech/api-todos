@@ -12,6 +12,7 @@
 {% include 'todos/preload.html' %}
 
 <body>
+    {% csrf_token %}
     <div id="mainContent">
         {% include 'todos/navbar.html' %}
         {% block content %}{% endblock %}
