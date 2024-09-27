@@ -109,7 +109,7 @@ class Urls(Enum):
 # Context Variable Names
 # =====================================================
 class ContextNames(Enum):
-    MESSAGES = "chats"
+    pass
 
 
 # Forms Constants Dictionary

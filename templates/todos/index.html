@@ -149,17 +149,17 @@
     <div class="flex w-full flex-col" data-aos="slide-up">
         <div class="divider">Try Now</div>
     </div>
-    <div class="mockup-browser bg-base-300 border" data-aos="fade-up">
+    <div class="mockup-browser bg-base-300 border" data-aos="fade-up" id="api-Example">
         <div class="mockup-browser-toolbar">
-            <div class="input">https://host.com/api/todos/?page=1</div>
-        </div>
-        <div class="mockup-browser-content text-center p-5">
-            <a role="button" class="btn btn-primary" onclick="fetchTodos()">Run Script</a>
+            <label class="input input-bordered flex items-center gap-2 px-2">
+                <input type="text" class="grow" placeholder="/api/todos/" id="todosRequest" />
+            </label>
+            <a role="button" class="btn btn-sm mx-3 btn-primary" onclick="fetchTodos()">Run Script</a>
         </div>
         <div class="bg-base-200 flex justify-center px-4 py-16">
-            <div id="sampleGetRequest">
+            <pre id="sampleGetRequest" class="text-secondary">
                 <span class="loading loading-dots loading-lg"></span>
-            </div>
+            </pre>
         </div>
     </div>
 
