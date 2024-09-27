@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <header class="text-center mb-6">
+        <h1 class="text-4xl font-bold">API Documentation</h1>
+        <p class="mt-2 text-lg">Learn how to interact with the Todos API</p>
+    </header>
+    <section>
+        <h2 class="text-2xl font-semibold mt-4">Using the API</h2>
+        <p class="mt-2">Here’s how to use the Todos API in different programming languages:
+        </p>
+    </section>
+    <div class="flex w-full flex-col">
+        <div class=" divider">GET Request</div>
+    </div>
+    <div role="tablist" class="tabs tabs-bordered">
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Fetch" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>fetch('/api/todos/6')
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+                        </code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+    "id": 6,
+    "title": "Cortez PLC",
+    "description": "92568 Miller Corner Suite 667\nJonestown, DC 18544",
+    "created": "2024-09-26T14:23:02.187288+05:30",
+    "modified": "2024-09-26T14:23:02.187302+05:30"
+    }
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Ajax" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>$.ajax({
+    url: "/api/todos/6/",
+    type: "GET",
+    headers: {
+    "X-CSRFToken": csrfToken,
+    },
+    success: function (response, status, xhr) {
+        console.log(response);
+    },
+    error: function (xhr, status, error) {
+        console.error("Error occurred:", xhr.responseText, status, error);
+    },
+    });
+                                    </code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+    "id": 6,
+    "title": "Cortez PLC",
+    "description": "92568 Miller Corner Suite 667\nJonestown, DC 18544",
+    "created": "2024-09-26T14:23:02.187288+05:30",
+    "modified": "2024-09-26T14:23:02.187302+05:30"
+    }
+                                    </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Python" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>from requests import get
+    response = get("http://url.domain/api/todos/6")
+    print(response.status_code)
+    print(response.json())
+                                                </code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+        200
+    {
+        'id': 6, 
+        'title': 'Cortez PLC', 
+        'description': '92568 Miller Corner Suite 667\nJonestown, DC 18544', 
+        'created': '2024-09-26T14:23:02.187288+05:30', 
+        'modified': '2024-09-26T14:23:02.187302+05:30'
+    }
+                                                </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="diff rounded my-10">
+        <div class="diff-item-1">
+            <div class="bg-primary text-primary-content grid place-content-center font-black">
+                Note: Todos Require API KEY while using POST, PUT, PATCH, DELETE request as header.
+            </div>
+        </div>
+        <div class="diff-item-2">
+            <div class="bg-base-200 grid place-content-center font-black">
+                Note: Todos Require API KEY while using POST, PUT, PATCH, DELETE request as header.
+            </div>
+        </div>
+        <div class="diff-resizer"></div>
+    </div>
+    <div class="flex w-full flex-col" data-aos="fade-up">
+        <div class="divider">POST Request</div>
+    </div>
+    <div role="tablist" class="tabs tabs-bordered" data-aos="fade-up">
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Fetch" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>fetch('/api/todos?api_key=apikey', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            title: 'New Task',
+            description: 'Description for new task',
+        }),
+    })
+    .then((response) => response.json())
+    .then((json) => console.log(json));</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+        "id": 7,
+        "title": "New Task",
+        "description": "Description for new task",
+        "created": "2024-09-27T14:23:02.187288+05:30",
+        "modified": "2024-09-27T14:23:02.187302+05:30"
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Ajax" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>$.ajax({
+        url: "/api/todos?api_key=apikey",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            title: "New Task",
+            description: "Description for new task"
+        }),
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error("Error occurred:", xhr.responseText, status, error);
+        },
+    });</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+        "id": 7,
+        "title": "New Task",
+        "description": "Description for new task",
+        "created": "2024-09-27T14:23:02.187288+05:30",
+        "modified": "2024-09-27T14:23:02.187302+05:30"
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Python" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>import requests
+    
+    response = requests.post("http://url.domain/api/todos?api_key=apikey", json={
+        'title': 'New Task',
+        'description': 'Description for new task',
+    })
+    print(response.status_code)
+    print(response.json())</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    200
+    {
+        'id': 7,
+        'title': 'New Task',
+        'description': 'Description for new task',
+        'created': '2024-09-27T14:23:02.187288+05:30',
+        'modified': '2024-09-27T14:23:02.187302+05:30'
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex w-full flex-col" data-aos="fade-up">
+        <div class="divider">PUT Request</div>
+    </div>
+    <div role="tablist" class="tabs tabs-bordered" data-aos="fade-up">
+        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Fetch" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>fetch('/api/todos/6?api_key=apikey', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            title: 'Updated Task',
+            description: 'Updated description',
+        }),
+    })
+    .then((response) => response.json())
+    .then((json) => console.log(json));</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+        "id": 6,
+        "title": "Updated Task",
+        "description": "Updated description",
+        "created": "2024-09-26T14:23:02.187288+05:30",
+        "modified": "2024-09-27T14:23:02.187302+05:30"
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Ajax" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>$.ajax({
+        url: "/api/todos/6?api_key=apikey",
+        type: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({
+            title: "Updated Task",
+            description: "Updated description"
+        }),
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error("Error occurred:", xhr.responseText, status, error);
+        },
+    });</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    {
+        "id": 6,
+        "title": "Updated Task",
+        "description": "Updated description",
+        "created": "2024-09-26T14:23:02.187288+05:30",
+        "modified": "2024-09-27T14:23:02.187302+05:30"
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Python" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>import requests
+    
+    response = requests.put("http://url.domain/api/todos/6?api_key=apikey", json={
+        'title': 'Updated Task',
+        'description': 'Updated description',
+    })
+    print(response.status_code)
+    print(response.json())</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+    200
+    {
+        'id': 6,
+        'title': 'Updated Task',
+        'description': 'Updated description',
+        'created': '2024-09-26T14:23:02.187288+05:30',
+        'modified': '2024-09-27T14:23:02.187302+05:30'
+    }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex w-full flex-col" data-aos="fade-up">
+        <div class="divider">PATCH Request</div>
+    </div>
+    <div role="tablist" class="tabs tabs-bordered" data-aos="fade-up">
+        <input type="radio" name="my_tabs_3" role="tab" class="tab" aria-label="Fetch" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>fetch('/api/todos/6?api_key=apikey', {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        description: 'Updated description only',
+    }),
+})
+.then((response) => response.json())
+.then((json) => console.log(json));</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+{
+    "id": 6,
+    "title": "Updated Task",
+    "description": "Updated description only",
+    "created": "2024-09-26T14:23:02.187288+05:30",
+    "modified": "2024-09-27T14:23:02.187302+05:30"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_3" role="tab" class="tab" aria-label="Ajax" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>$.ajax({
+    url: "/api/todos/6?api_key=apikey",
+    type: "PATCH",
+    contentType: "application/json",
+    data: JSON.stringify({
+        description: "Updated description only"
+    }),
+    success: function (response) {
+        console.log(response);
+    },
+    error: function (xhr, status, error) {
+        console.error("Error occurred:", xhr.responseText, status, error);
+    },
+});</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+{
+    "id": 6,
+    "title": "Updated Task",
+    "description": "Updated description only",
+    "created": "2024-09-26T14:23:02.187288+05:30",
+    "modified": "2024-09-27T14:23:02.187302+05:30"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_3" role="tab" class="tab" aria-label="Python" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>import requests
+
+response = requests.patch("http://url.domain/api/todos/6?api_key=apikey", json={
+    'description': 'Updated description only',
+})
+print(response.status_code)
+print(response.json())</code></pre>
+                    </div>
+                    <br>
+                    <div class="mockup-code">
+                        <pre data-prefix="#"><code>Response</code></pre>
+                        <pre><code>
+200
+{
+    'id': 6,
+    'title': 'Updated Task',
+    'description': 'Updated description only',
+    'created': '2024-09-26T14:23:02.187288+05:30',
+    'modified': '2024-09-27T14:23:02.187302+05:30'
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex w-full flex-col" data-aos="fade-up">
+        <div class="divider">DELETE Request</div>
+    </div>
+    <div role="tablist" class="tabs tabs-bordered" data-aos="fade-up">
+        <input type="radio" name="my_tabs_3" role="tab" class="tab" aria-label="Fetch" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>fetch('/api/todos/6?api_key=apikey', {
+    method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        description: 'Updated description only',
+    }),
+})
+.then((response) => response.json())
+.then((json) => console.log(json));</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="radio" name="my_tabs_3" role="tab" class="tab" aria-label="Ajax" />
+        <div role="tabpanel" class="tab-content p-10">
+            <div class="mockup-window bg-base-300 border">
+                <div class="bg-base-200 px-4 py-16">
+                    <div class="mockup-code">
+                        <pre><code>$.ajax({
+    url: "/api/todos/6?api_key=apikey",
+    type: "DELETE",
+    contentType: "application/json",
+    data: JSON.stringify({
+        description: "Updated description only"
+    }),
+    success: function (response) {
+        console.log(response);
+    },
+    error: function (xhr, status, error) {
+        console.error("Error occurred:", xhr.responseText, status, error);
+    },
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

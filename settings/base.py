@@ -5,9 +5,11 @@ from utils.constants import Settings, EmailConfig
 import dj_database_url
 
 config = dotenv_values(".env")
+AUTH_USER_MODEL = "accounts.User"
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config["SECRET_KEY"]
 ROOT_URLCONF = Settings.ROOT_URL.value
+APPEND_SLASH = True
 
 # Installed Apps
 # =====================================================
@@ -18,11 +20,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "django_extensions",
     "dj_database_url",
-    "login_required",
     "debug_toolbar",
     "schema_graph",
+    "accounts.apps.AccountsConfig",
+    "todos",
 ]
 
 
@@ -36,8 +40,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "login_required.middleware.LoginRequiredMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "utils.custom_middleware.ApiMiddleware",
 ]
 
 # Middlewares
@@ -53,20 +57,11 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "utils.context_processors.theme_form",
+                "utils.context_processors.newsletter_form",
             ],
         },
     },
-]
-
-
-# Ignore Paths for Login Required
-# =====================================================
-# https://pypi.org/project/django-login-required-middleware/
-LOGIN_REQUIRED_IGNORE_PATHS = [
-    "/accounts/login/$",
-    "/accounts/signup/$",
-    "/admin/$",
-    "/about/$",
 ]
 
 
@@ -158,3 +153,11 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.redirects.RedirectsPanel",
     "debug_toolbar.panels.profiling.ProfilingPanel",
 ]
+
+# Rest Framework Configuration
+# https://www.django-rest-framework.org/
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 20,
+}

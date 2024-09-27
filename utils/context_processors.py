@@ -1,4 +1,12 @@
 from dotenv import dotenv_values
-from utils import firestore_config
+from todos.forms import Themes, NewsLetter
 
-config = dotenv_values(".env")
+
+def theme_form(request):
+    theme_form = Themes()
+    return {"theme_form": theme_form}
+
+
+def newsletter_form(request):
+    newsletter_form = NewsLetter()
+    return {"newsletter_form": newsletter_form}

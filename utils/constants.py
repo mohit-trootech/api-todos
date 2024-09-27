@@ -3,6 +3,15 @@ from enum import Enum
 from dotenv import dotenv_values
 
 
+# JsonResponses Constants
+# =====================================================
+class JsonResponses(Enum):
+    INVALID_API = "Invalid Api Key"
+    API_KEY_UNAUTHORIZED = (
+        "Unauthorized API Key, Please Check API Key or Try Generate a New One."
+    )
+
+
 # Settings Constants
 # =====================================================
 class Settings(Enum):
@@ -66,71 +75,52 @@ class Success(Enum):
     FORCE_LOGGED_OUT = _("User Logged Out Successfully from all Sessions")
     PROFILE_UPDATED = _("Profile Updated Successfully")
     NEWSLETTER_SUCCESS = _("Newsletter Subscribed Successfully")
+    API_KEY_UPDATED = _("API Key Updated Successfully")
 
 
 # Templates Name
 # =====================================================
 class Templates(Enum):
+    INDEX = "todos/index.html"
+    ABOUT = "todos/about.html"
+    PROFILE = "accounts/profile.html"
     LOGIN = "accounts/login.html"
     SIGNUP = "accounts/signup.html"
-    PROFILE = "accounts/profile.html"
-    HOME = "chat/index.html"
-    ABOUT = "todos/about.html"
-    ONLINE_USERS_LIST = "chat/online-users-list.html"
-    PARTICIPANTS = "chat/chat-participant.html"
-    CHAT_CONTENT = "chat/content.html"
-    NEWSLETTER = "email/newsletter.html"
-    CHAT_LIST = "chat/chat-list.html"
 
 
 # Urls Path & Reverse
 # =====================================================
 class Urls(Enum):
-    HOME = "/chat/"
-    ABOUT = "/chat/about/"
-    LOGIN = "/accounts/login"
-    REGISTER = "accounts/signup"
-    LOGOUT = "accounts/logout"
-    PROFILE = "accounts/profile"
-    HOME_REVERSE = "home"
-    ABOUT_REVERSE = "about"
+    TODOS_HOME = "index"
+    TODOS_ABOUT = "about"
+    SCHEMA_REVERSE = "schema"
+    TODOS_REVERSE = "todos"
+    TODO_DETAIL_REVERSE = "todo-detail"
     LOGIN_REVERSE = "login"
-    REGISTER_REVERSE = "signup"
+    LOGIN = "/accounts/login/"
     LOGOUT_REVERSE = "logout"
     FORCE_LOGOUT_REVERSE = "force-logout"
+    REGISTER_REVERSE = "signup"
     PROFILE_REVERSE = "profile"
-    USER_PROFILE_REVERSE = "user-profile"
-    INDEX_REVERSE = "index"
-    CHAT_DATA = "chat-data"
-    PROFILE_UPDATE_SUCCESS_URL = "/accounts/profile/{pk}"
-    NEWLETTER_REVERSE = "newsletter"
+    PROFILE_SUCCESS_URL = "/accounts/profile/{pk}/"
+    UPDATE_API_REVERSE = "update-api"
 
 
 # Context Variable Names
 # =====================================================
 class ContextNames(Enum):
-    MESSAGES = "chats"
+    pass
 
 
 # Forms Constants Dictionary
 # =====================================================
 FORM_LABELS = {
-    "profile": "Please Update Profile Picture",
-    "age": "Enter Age",
-    "phone": "Enter Phone Number",
-    "address": "Enter Address",
     "first_name": "Enter First Name",
     "last_name": "Enter Last Name",
     "username": "Enter Username",
     "email": "Enter Email",
     "password": "Enter Password",
 }
-
-
-# Model Media Urls
-# =====================================================
-class ModelMediaUrl(Enum):
-    USER = "profile/{id}/{file}"
 
 
 # Email Configurations
@@ -145,27 +135,13 @@ class EmailConfig(Enum):
 # Request KEY
 # =====================================================
 class RequestKey(Enum):
-    ONLINE_USERS = "onlineUsers"
-    REQUEST_TYPE = "requestType"
-    NEW_CHAT = "startNewChat"
-    USER_ID = "userId"
-    CHAT_MESSAGE = "newChatMessage"
-    USER_TEXT = "userText"
-    CHAT_ID = "chatId"
-    UPDATE_STATUS = "updateStatus"
-    UPDATE_FRIENDS_LIST = "updateFriendsList"
-    USER = "user"
-    LOAD_CHATS = "loadChats"
+    pass
 
 
 # Response KEY
 # =====================================================
 class ResponseKey(Enum):
-    PARTICIPANT_HTML = "participant_html"
-    CHAT_HTML = "chat_html"
-    FIRESTORE_CHAT_COLLECTION = """
-chatsCollectionUrl = `chats/{id}/messages;`
-"""
+    pass
 
 
 # Email Secret
@@ -220,30 +196,3 @@ THEME_CHOICES = (
 )
 
 TYPE_HTML = "text/html"
-SECONDS_IN_ONE_DAY = 86400
-INACTIVE_STATUS = 0
-ACTIVE_STATUS = 1
-
-STATUS_CHOICES = (
-    (INACTIVE_STATUS, _("Inactive")),
-    (ACTIVE_STATUS, _("Active")),
-)
-THUMBNAIL_PREVIEW_TAG = '<img src="{img}" width="320"/>'
-THUMBNAIL_PREVIEW_HTML = """<div class="warning" style="color:#000;width: 320px;
-        padding: 12px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: start;
-        background: #FEF7D1;
-        border: 1px solid #F7C752;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px -3px #111;">
-        <div class="warning__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none">
-                <path fill="#393a37" d="m13 14h-2v-5h2zm0 4h-2v-2h2zm-12 3h22l-11-19z" style="
-        fill: #F7C752;"></path>
-            </svg>
-        </div>
-        <strong>No Profile Picture Available</strong>
-    </div>"""
