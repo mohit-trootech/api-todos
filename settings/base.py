@@ -1,8 +1,10 @@
-from pathlib import Path
 from os import path
-from dotenv import dotenv_values
-from utils.constants import Settings, EmailConfig
+from pathlib import Path
+
 import dj_database_url
+from dotenv import dotenv_values
+
+from utils.constants import Settings, EmailConfig
 
 config = dotenv_values(".env")
 AUTH_USER_MODEL = "accounts.User"
@@ -27,12 +29,14 @@ INSTALLED_APPS = [
     "schema_graph",
     "accounts.apps.AccountsConfig",
     "todos",
+    "corsheaders",
 ]
 
 
 # Middlewares
 # =====================================================
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -44,7 +48,14 @@ MIDDLEWARE = [
     "utils.custom_middleware.ApiMiddleware",
 ]
 
-# Middlewares
+# Cors Allowed Origin
+# =====================================================
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://localhost:3000",
+]
+
+# Templates
 # =====================================================
 TEMPLATES = [
     {
@@ -159,5 +170,5 @@ DEBUG_TOOLBAR_PANELS = [
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 20,
+    "PAGE_SIZE": 10,
 }
